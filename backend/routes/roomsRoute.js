@@ -5,7 +5,7 @@ const Room = require('../rooms/room')
 
 
 
-router.get("/getallrooms", async(req, res) => {
+router.get("/allrooms", async(req, res) => {
 
     try {
         const rooms = await Room.find({})
