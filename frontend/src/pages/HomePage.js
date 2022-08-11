@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Room from "../components/Room";
 
-function Homepage() {
+function HomePage() {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
@@ -31,7 +31,6 @@ function Homepage() {
 
       setRooms(data.data);
       setLoading(false);
-      //console.log(data);
     };
 
     fetchData().catch((error) => {
@@ -62,4 +61,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default HomePage;
