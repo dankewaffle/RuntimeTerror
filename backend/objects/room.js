@@ -11,7 +11,7 @@ const roomSchema = mongoose.Schema(
       required: true,
     },
     phonenumber: {
-      type: Number,
+      type: String,
       required: true,
     },
     costpernight: {
@@ -34,6 +34,6 @@ const roomSchema = mongoose.Schema(
   }
 );
 
-const roomModel = mongoose.model("rooms" , roomSchema);
+const roomObject = mongoose.model("rooms" , roomSchema);
 
-module.exports = roomModel;
+module.exports = roomObject;

@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/home">
           Runtime Terror Hotel
         </a>
         <button
@@ -21,12 +21,12 @@ function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href="/register">
+              <a className="nav-link" href="/join">
                 Join
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/login">
+              <a className="nav-link" href="/Signin.js">
                 Sign In
               </a>
             </li>
