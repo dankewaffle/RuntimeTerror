@@ -26,7 +26,7 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/Signin.js">
+              <a className="nav-link" href="/account">
                 Sign In
               </a>
             </li>
