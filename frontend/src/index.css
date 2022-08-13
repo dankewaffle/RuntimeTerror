@@ -32,6 +32,10 @@ code {
     margin-left: auto !important;
 }
 
+.dropdown-toggle {
+ border: 0px solid black !important;
+}
+
 /* Home CSS */
 .smallimg {
     height: 200px;

@@ -16,11 +16,11 @@ function Signin() {
     };
     try {
       setLoading(true);
-      const result = await axios.post("/api/accounts/signin", account);
+      const result = await axios.post('/api/accounts/signin', account);
       setLoading(false);
 
-      localStorage.setItem("currentAccount", JSON.stringify(result));
-      window.location.href = "/home";
+      localStorage.setItem('currentAccount', JSON.stringify(result));
+      window.location.href = '/home';
     } catch (error) {
       console.log(error);
       setLoading(false);

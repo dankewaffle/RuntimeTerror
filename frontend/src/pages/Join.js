@@ -24,7 +24,7 @@ function Join() {
 
       try {
         setLoading(true);
-        const result = await axios.post("/api/accounts/join", account).data;
+        const result = await axios.post("/api/accounts/join", account);
         setLoading(false);
         setSuccess(true);
 
