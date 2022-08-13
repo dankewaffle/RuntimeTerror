@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Carousel } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 //change Max Count / Capacity in backend/database and in MongoDB
 
@@ -11,7 +12,7 @@ function Room({ room }) {
   return (
     <div className="row bs">
       <div className="col-md-4">
-        <img src={room.imageurls[0]} className="smallimg" />
+        <img src={room.imageurls[0]} className="smallimg" alt=""/>
       </div>
       <div className="col-md-7">
         <h1>{room.name}</h1>
@@ -24,8 +25,11 @@ function Room({ room }) {
         <p>
           <b>Type:</b> {room.type}
         </p>
-
+        {/* Main Card Buttons */}
         <div style={{ float: "right" }}>
+          <Link to={`/book/${room._id}`}>
+            <button className="btn btn-primary m-2">Book Now</button>
+          </Link>
           <button className="btn btn-primary" onClick={handleShow}>
             View Details
           </button>
@@ -42,7 +46,7 @@ function Room({ room }) {
             {room.imageurls.map((url) => {
               return (
                 <Carousel.Item>
-                  <img className="d-block w-100 bigimg" src={url} />
+                  <img className="d-block w-100 bigimg" src={url} alt=""/>
                 </Carousel.Item>
               );
             })}
