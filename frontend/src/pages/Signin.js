@@ -16,11 +16,11 @@ function Signin() {
     };
     try {
       setLoading(true);
-      const result = await axios.post('/api/accounts/signin', account);
+      const result = await axios.post("/api/accounts/signin", account);
       setLoading(false);
 
-      localStorage.setItem('currentAccount', JSON.stringify(result));
-      window.location.href = '/home';
+      localStorage.setItem("currentAccount", JSON.stringify(result));
+      window.location.href = "/home";
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -33,7 +33,6 @@ function Signin() {
       {loading && <Loader />}
       <div className="row justify-content-center mt-5">
         <div className="col-md-5 mt-5">
-          
           {error && <Error message="Invalid Credentials" />}
           <div className="bs">
             <h2>Sign In to Your RuntimeTerror Members Account</h2>
