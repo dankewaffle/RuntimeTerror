@@ -14,7 +14,7 @@ function Join() {
   const [success, setSuccess] = useState();
 
   async function join() {
-    if (password == confirmPassword) {
+    if (password === confirmPassword) {
       const account = {
         name,
         email,
