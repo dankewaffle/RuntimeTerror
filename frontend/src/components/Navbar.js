@@ -39,7 +39,6 @@ function Navbar() {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-
                       <i class="fa-solid fa-user"></i>
                       &nbsp;
                       {account.data.name}

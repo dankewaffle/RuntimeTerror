@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 //change Max Count / Capacity in backend/database and in MongoDB
 
-function Room({ room }) {
+function Room({ room, checkIn, checkOut }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -12,12 +12,12 @@ function Room({ room }) {
   return (
     <div className="row bs">
       <div className="col-md-4">
-        <img src={room.imageurls[0]} className="smallimg" alt=""/>
+        <img src={room.imageurls[0]} className="smallimg" alt="" />
       </div>
       <div className="col-md-7">
         <h1>{room.name}</h1>
         <p>
-          <b>Availability:</b> {room.available}
+          <b>Available Rooms:</b> {room.available}
         </p>
         <p>
           <b>Phone Number:</b> {room.phonenumber}
@@ -27,9 +27,13 @@ function Room({ room }) {
         </p>
         {/* Main Card Buttons */}
         <div style={{ float: "right" }}>
-          <Link to={`/book/${room._id}`}>
-            <button className="btn btn-primary m-2">Book Now</button>
-          </Link>
+          {/* also try to hide book button if not signed in?? */}
+          {checkIn && checkOut && (
+            <Link to={`/book/${room._id}/${checkIn}/${checkOut}`}>
+              <button className="btn btn-primary m-2">Book Now</button>
+            </Link>
+          )}
+
           <button className="btn btn-primary" onClick={handleShow}>
             View Details
           </button>
@@ -46,7 +50,7 @@ function Room({ room }) {
             {room.imageurls.map((url) => {
               return (
                 <Carousel.Item>
-                  <img className="d-block w-100 bigimg" src={url} alt=""/>
+                  <img className="d-block w-100 bigimg" src={url} alt="" />
                 </Carousel.Item>
               );
             })}
