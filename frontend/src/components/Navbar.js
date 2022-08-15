@@ -4,7 +4,7 @@ function Navbar() {
   const account = JSON.parse(localStorage.getItem("currentAccount"));
   function signout() {
     localStorage.removeItem("currentAccount");
-    window.location.href = "/account";
+    window.location.href = "/signin";
   }
 
   return (
@@ -39,14 +39,14 @@ function Navbar() {
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
                     >
-                      <i class="fa-solid fa-user"></i>
+                      <i className="fa-solid fa-user"></i>
                       &nbsp;
                       {account.data.name}
                     </button>
                     <ul className="dropdown-menu">
                       <li>
-                        <a className="dropdown-item" href="/Book.js">
-                          Bookings
+                        <a className="dropdown-item" href="/account">
+                          My Account
                         </a>
                       </li>
                       <li>
@@ -65,7 +65,7 @@ function Navbar() {
                     </a>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/account">
+                    <a className="nav-link" href="/signin">
                       Sign In
                     </a>
                   </li>

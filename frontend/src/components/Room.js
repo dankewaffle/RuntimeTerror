@@ -27,7 +27,6 @@ function Room({ room, checkIn, checkOut }) {
         </p>
         {/* Main Card Buttons */}
         <div style={{ float: "right" }}>
-          {/* also try to hide book button if not signed in?? */}
           {checkIn && checkOut && (
             <Link to={`/book/${room._id}/${checkIn}/${checkOut}`}>
               <button className="btn btn-primary m-2">Book Now</button>

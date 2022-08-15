@@ -6,7 +6,7 @@ const roomSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    available: {
+    capacity: {
       type: Number,
       required: true,
     },

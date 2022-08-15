@@ -16,8 +16,15 @@ function Book({ match }) {
   const duration = moment.duration(checkOut.diff(checkIn)).asDays();
   const [totalCost, setTotalCost] = useState();
 
+
+
   useEffect(() => {
     const fetchData = async () => {
+
+      if(!localStorage.getItem('currentAccount')) {
+        window.location.href='/signin'
+      }
+
       setLoading(true);
       const data = (
         await axios.post("/api/rooms/roomid", {
@@ -87,7 +94,7 @@ function Book({ match }) {
                   {match.params.checkOut}
                 </p>
                 <p>
-                  <b>Available Rooms: </b> {room.available}
+                  <b>Sleeps: </b> {room.capacity}
                 </p>
               </div>
 
