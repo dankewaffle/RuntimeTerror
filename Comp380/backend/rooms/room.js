@@ -6,7 +6,7 @@ const roomSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    capacity: {
+    available: {
       type: Number,
       required: true,
     },
@@ -34,6 +34,6 @@ const roomSchema = mongoose.Schema(
   }
 );
 
-const roomModel = mongoose.model("rooms", roomSchema);
+const roomModel = mongoose.model("rooms" , roomSchema);
 
 module.exports = roomModel;
