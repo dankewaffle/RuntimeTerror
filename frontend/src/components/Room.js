@@ -17,7 +17,7 @@ function Room({ room, checkIn, checkOut }) {
       <div className="col-md-7">
         <h1>{room.name}</h1>
         <p>
-          <b>Available Rooms:</b> {room.available}
+          <b>Sleeps:</b> {room.capacity}
         </p>
         <p>
           <b>Phone Number:</b> {room.phonenumber}
