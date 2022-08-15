@@ -13,7 +13,7 @@ function App() {
       <Navbar />
       <BrowserRouter>
         <Route path="/home" exact component={Home} />
-        <Route path="/book/:roomid" exact component={Book} />
+        <Route path="/book/:roomid/:checkIn/:checkOut" exact component={Book} />
           <Route path="/join" exact component={Join} />
           <Route path="/account" exact component={Signin} />
       </BrowserRouter>

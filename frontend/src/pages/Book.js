@@ -2,20 +2,28 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
+import moment from "moment";
 
 function Book({ match }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [room, setRoom] = useState();
+  const roomID = match.params.roomid;
+  const checkIn = moment(match.params.checkIn, "MM-DD-YYYY");
+  const checkOut = moment(match.params.checkOut, "MM-DD-YYYY");
+  const duration = moment.duration(checkOut.diff(checkIn)).asDays();
+  const [totalCost, setTotalCost] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const data = await axios.post("/api/rooms/roomid", {
-        roomid: match.params.roomid,
-      });
-
-      setRoom(data.data);
+      const data = (
+        await axios.post("/api/rooms/roomid", {
+          roomid: match.params.roomid,
+        })
+      ).data;
+      setTotalCost(data.costpernight * duration);
+      setRoom(data);
       setLoading(false);
     };
     fetchData().catch((error) => {
@@ -24,6 +32,20 @@ function Book({ match }) {
       setLoading(false);
     });
   }, []);
+
+  async function bookRoom() {
+    const bookingDetails = {
+      room,
+      accountID: JSON.parse(localStorage.getItem('currentAccount')).data._id,
+      checkIn,
+      checkOut,
+      totalCost,
+      duration,
+    };
+    try {
+      const result = await axios.post("/api/bookings/book", bookingDetails);
+    } catch (error) {console.log("bitch")}
+  }
 
   return (
     <div className="m-5">
@@ -42,13 +64,15 @@ function Book({ match }) {
                 <hr />
 
                 <p>
-                  <b>Name: </b>{" "}
+                  <b>Name: </b>{JSON.parse(localStorage.getItem('currentAccount')).data.name}
                 </p>
                 <p>
-                  <b>From: </b>{" "}
+                  <b>Check In: </b>
+                  {match.params.checkIn}
                 </p>
                 <p>
-                  <b>To: </b>{" "}
+                  <b>Check Out: </b>
+                  {match.params.checkOut}
                 </p>
                 <p>
                   <b>Available Rooms: </b> {room.available}
@@ -59,19 +83,21 @@ function Book({ match }) {
                 <h1>Available Rate</h1>
                 <hr />
                 <p>
-                  <b>Price Per Night: </b>
-                  {room.costpernight}
+                  <b>Price Per Night: </b>${room.costpernight}
                 </p>
                 <p>
-                  <b>Total Nights: </b>{" "}
+                  <b>Total Nights: </b>
+                  {duration}
                 </p>
                 <p>
-                  <b>Total Room Charge: </b>{" "}
+                  <b>Total Room Charge: </b>${totalCost}
                 </p>
               </div>
 
               <div style={{ float: "right" }}>
-                <button className="btn btn-primary">Book Reservation</button>
+                <button className="btn btn-primary" onClick={bookRoom}>
+                  Book Reservation
+                </button>
               </div>
             </div>
           </div>
