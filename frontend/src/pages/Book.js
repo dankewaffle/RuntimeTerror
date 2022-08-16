@@ -5,6 +5,10 @@ import Error from "../components/Error";
 import moment from "moment";
 import StripeCheckout from "react-stripe-checkout";
 import Swal from "sweetalert2";
+import AOS from "aos";
+import "aos/dist/aos.css"; // You can also use <link> for styles
+// ..
+AOS.init();
 
 function Book({ match }) {
   const [loading, setLoading] = useState(true);
@@ -16,13 +20,10 @@ function Book({ match }) {
   const duration = moment.duration(checkOut.diff(checkIn)).asDays();
   const [totalCost, setTotalCost] = useState();
 
-
-
   useEffect(() => {
     const fetchData = async () => {
-
-      if(!localStorage.getItem('currentAccount')) {
-        window.location.href='/signin'
+      if (!localStorage.getItem("currentAccount")) {
+        window.location.href = "/signin";
       }
 
       setLoading(true);
@@ -43,7 +44,7 @@ function Book({ match }) {
   }, []);
 
   async function onToken(token) {
-    console.log(token)
+    console.log(token);
     const bookingDetails = {
       room,
       accountID: JSON.parse(localStorage.getItem("currentAccount")).data._id,
@@ -51,23 +52,31 @@ function Book({ match }) {
       checkOut,
       totalCost,
       duration,
-      token
+      token,
     };
     try {
       setLoading(true);
       const result = await axios.post("/api/bookings/book", bookingDetails);
       setLoading(false);
-      Swal.fire('Success!' , 'Your room is booked!  We can\'t wait for your stay!', 'success').then(result=>{
-        window.location.href='/bookings/'
+      Swal.fire(
+        "Success!",
+        "Your room is booked!  We can't wait for your stay!",
+        "success"
+      ).then((result) => {
+        window.location.href = "/bookings/";
       });
     } catch (error) {
-      setLoading(false)
-      Swal.fire('Uh Oh!' , 'Something went wrong, please try again in a bit!', 'error');
+      setLoading(false);
+      Swal.fire(
+        "Uh Oh!",
+        "Something went wrong, please try again in a bit!",
+        "error"
+      );
     }
   }
 
   return (
-    <div className="m-5">
+    <div className="m-5" data-aos="fade-zoom-in">
       {loading ? (
         <Loader />
       ) : room ? (
@@ -83,7 +92,8 @@ function Book({ match }) {
                 <hr />
 
                 <p>
-                  <b>Name: </b>{JSON.parse(localStorage.getItem('currentAccount')).data.name}
+                  <b>Name: </b>
+                  {JSON.parse(localStorage.getItem("currentAccount")).data.name}
                 </p>
                 <p>
                   <b>Check In: </b>
@@ -115,14 +125,12 @@ function Book({ match }) {
 
               <div style={{ float: "right" }}>
                 <StripeCheckout
-                    amount={totalCost * 100}
-                    token={onToken}
-                    currency='USD'
-                    stripeKey="pk_test_51LWnWELbmQqDgABX1iDAEWuOhTxsZGaVHzP08xjTOpSdhPvMte16n8qFyPrxr4TmGOBqQuNMl9AcFsjUalOTRWHt00XQrBVOfT"
+                  amount={totalCost * 100}
+                  token={onToken}
+                  currency="USD"
+                  stripeKey="pk_test_51LWnWELbmQqDgABX1iDAEWuOhTxsZGaVHzP08xjTOpSdhPvMte16n8qFyPrxr4TmGOBqQuNMl9AcFsjUalOTRWHt00XQrBVOfT"
                 >
-                  <button className="btn btn-primary">
-                    Book Reservation
-                  </button>
+                  <button className="btn btn-primary">Book Reservation</button>
                 </StripeCheckout>
               </div>
             </div>
