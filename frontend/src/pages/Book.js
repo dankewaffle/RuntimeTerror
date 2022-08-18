@@ -3,6 +3,8 @@ import axios from "axios";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import moment from "moment";
+import StripeCheckout from "react-stripe-checkout";
+import Swal from "sweetalert2";
 
 function Book({ match }) {
   const [loading, setLoading] = useState(true);
@@ -33,18 +35,28 @@ function Book({ match }) {
     });
   }, []);
 
-  async function bookRoom() {
+  async function onToken(token) {
+    console.log(token)
     const bookingDetails = {
       room,
-      accountID: JSON.parse(localStorage.getItem('currentAccount')).data._id,
+      accountID: JSON.parse(localStorage.getItem("currentAccount")).data._id,
       checkIn,
       checkOut,
       totalCost,
       duration,
+      token
     };
     try {
+      setLoading(true);
       const result = await axios.post("/api/bookings/book", bookingDetails);
-    } catch (error) {console.log("bitch")}
+      setLoading(false);
+      Swal.fire('Success!' , 'Your room is booked!  We can\'t wait for your stay!', 'success').then(result=>{
+        window.location.href='/bookings/'
+      });
+    } catch (error) {
+      setLoading(false)
+      Swal.fire('Uh Oh!' , 'Something went wrong, please try again in a bit!', 'error');
+    }
   }
 
   return (
@@ -95,9 +107,16 @@ function Book({ match }) {
               </div>
 
               <div style={{ float: "right" }}>
-                <button className="btn btn-primary" onClick={bookRoom}>
-                  Book Reservation
-                </button>
+                <StripeCheckout
+                    amount={totalCost * 100}
+                    token={onToken}
+                    currency='USD'
+                    stripeKey="pk_test_51LWnWELbmQqDgABX1iDAEWuOhTxsZGaVHzP08xjTOpSdhPvMte16n8qFyPrxr4TmGOBqQuNMl9AcFsjUalOTRWHt00XQrBVOfT"
+                >
+                  <button className="btn btn-primary">
+                    Book Reservation
+                  </button>
+                </StripeCheckout>
               </div>
             </div>
           </div>
