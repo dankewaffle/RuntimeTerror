@@ -34,4 +34,13 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+router.get("/allaccounts", async(req, res) => {
+    try {
+        const accounts = await Account.find()
+      res.send(accounts)
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
 module.exports = router;
