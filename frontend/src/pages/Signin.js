@@ -34,7 +34,7 @@ function Signin() {
       <div className="row justify-content-center mt-5">
         <div className="col-md-5 mt-5">
           {error && <Error message="Invalid Credentials" />}
-          <div className="bs">
+          <div className="bs" style={{ backgroundColor: "white" }}>
             <h2>Sign In to Your RuntimeTerror Members Account</h2>
             <input
               type="text"

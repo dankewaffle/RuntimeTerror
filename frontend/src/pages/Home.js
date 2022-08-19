@@ -96,10 +96,10 @@ function Home() {
       setRooms(duplicates);
     }
   }
-
+  //style={{ color: "white" }}
   return (
     <div className="container">
-      <div className="row mt-5 bs">
+      <div className="row mt-5 bs" style={{ backgroundColor: "white" }}>
         <div className="col-md-3">
           <RangePicker format="MM-DD-YYYY" onChange={filterByDate} />
         </div>
