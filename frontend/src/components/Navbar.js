@@ -9,9 +9,9 @@ function Navbar() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar navbar-expand-lg border-bottom">
         <div className="container-fluid">
-          <a className="navbar-brand ms-3" href="/home">
+          <a className="navbar-brand ms-3 mt-1 mb-1" href="/home">
             Runtime Terror Hotel
           </a>
 

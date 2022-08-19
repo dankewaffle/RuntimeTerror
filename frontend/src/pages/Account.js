@@ -19,7 +19,7 @@ function Account() {
   }, []);
 
   return (
-    <div className="ms-3 mt-3 me-3 bs">
+    <div className="ms-3 mt-3 me-3 bs" style={{ backgroundColor: "white" }}>
       <Tabs defaultActiveKey="1">
         <TabPane tab="Account" key="1">
           <h1>My Account</h1>

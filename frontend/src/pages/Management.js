@@ -15,7 +15,7 @@ function Management() {
   }, []);
 
   return (
-    <div className={"mt-3 ms-3 me-3 bs"}>
+    <div className={"mt-3 ms-3 me-3 bs"} style={{ backgroundColor: "white" }}>
       <h2 className="text-center" style={{ fontSize: "30px" }}>
         <b>Management Portal</b>
       </h2>

@@ -49,7 +49,7 @@ function Join() {
       <div className="row justify-content-center mt-5">
         <div className="col-md-5 mt-5">
       {success && <Success message="Account created successfully!" />}
-          <div className="bs">
+          <div className="bs" style={{ backgroundColor: "white" }}>
             <h2>Join RuntimeTerror Members</h2>
             <input
               type="text"
