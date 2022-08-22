@@ -21,14 +21,14 @@ function Account() {
   return (
     <div className="ms-3 mt-3 me-3 bs" style={{ backgroundColor: "white" }}>
       <Tabs defaultActiveKey="1">
-        <TabPane tab="Account" key="1">
+        <TabPane tab="Account" key="2">
           <h1>My Account</h1>
           <br />
           <h1>Name: {account.data.name}</h1>
           <h1>Email: {account.data.email}</h1>
-          <h1>isAdmin: {account.data.isAdmin ? "YES" : "NO"}</h1>
+          <h1>Manager: {account.data.isAdmin ? "YES" : "NO"}</h1>
         </TabPane>
-        <TabPane tab="Bookings" key="2">
+        <TabPane tab="Bookings" key="1">
           <MyBookings />
         </TabPane>
       </Tabs>

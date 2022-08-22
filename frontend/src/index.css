@@ -30,10 +30,12 @@ code {
 
 .navbar-brand {
   color: black !important;
+  font-size: 30px !important;
 }
 
 .navbar-nav {
   margin-left: auto !important;
+  font-size: 20px !important;
 }
 
 .dropdown-toggle {
@@ -103,7 +105,7 @@ p {
 /* Landing Screen */
 
 .landing {
-  background-color: black !important;
+  background-color: gray !important;
   height: 100vh;
   /* padding-top: 130px; */
 }

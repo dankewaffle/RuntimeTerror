@@ -50,6 +50,11 @@ function Navbar() {
                         </a>
                       </li>
                       <li>
+                        <a className="dropdown-item" href="/management">
+                          Management Portal
+                        </a>
+                      </li>
+                      <li>
                         <a className="dropdown-item" href="#" onClick={signout}>
                           Sign Out
                         </a>
