@@ -23,7 +23,7 @@ function Book({ match }) {
   useEffect(() => {
     const fetchData = async () => {
       if (!localStorage.getItem("currentAccount")) {
-        window.location.href = "/signin";
+        window.location.href = "/join";
       }
 
       setLoading(true);
