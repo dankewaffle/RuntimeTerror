@@ -23,7 +23,7 @@ function Book({ match }) {
   useEffect(() => {
     const fetchData = async () => {
       if (!localStorage.getItem("currentAccount")) {
-        window.location.href = "/signin";
+        window.location.href = "/join";
       }
 
       setLoading(true);
@@ -63,7 +63,7 @@ function Book({ match }) {
         "Your room is booked!  We can't wait for your stay!",
         "success"
       ).then((result) => {
-        window.location.href = "/bookings/";
+        window.location.href = "/account/";
       });
     } catch (error) {
       setLoading(false);

@@ -126,6 +126,7 @@ function Home() {
             <option value="All">All Room Types</option>
             <option value="Deluxe">Deluxe</option>
             <option value="Suite">Suite</option>
+            <option value="Standard">Standard</option>
           </select>
         </div>
       </div>

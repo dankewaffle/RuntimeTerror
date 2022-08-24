@@ -186,7 +186,7 @@ export function Accounts() {
               <th>Account ID</th>
               <th>Account Name</th>
               <th>Email</th>
-              <th>Is Admin</th>
+              <th>Manager</th>
             </tr>
           </thead>
           <tbody>

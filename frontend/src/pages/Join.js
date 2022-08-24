@@ -3,6 +3,8 @@ import axios from "axios";
 import Loader from "../components/Loader";
 import Error from "../components/Error";
 import Success from "../components/Success";
+import comparePasswords from "../components/Util";
+import { createAccount } from "../components/Util";
 
 function Join() {
   const [name, setName] = useState("");
@@ -13,32 +15,21 @@ function Join() {
   const [error, setError] = useState();
   const [success, setSuccess] = useState();
 
-  async function join() {
-    if (password === confirmPassword) {
-      const account = {
+  function join() {
+    if (comparePasswords(password, confirmPassword) === true) {
+      createAccount(
         name,
         email,
         password,
         confirmPassword,
-      };
-
-      try {
-        setLoading(true);
-        const result = await axios.post("/api/accounts/join", account);
-        setLoading(false);
-        setSuccess(true);
-
-        setName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-        setError(true);
-      }
-    } else {
-      alert("Passwords do not match");
+        setLoading,
+        setSuccess,
+        setName,
+        setEmail,
+        setPassword,
+        setConfirmPassword,
+        setError
+      );
     }
   }
 
@@ -48,7 +39,7 @@ function Join() {
       {error && <Error />}
       <div className="row justify-content-center mt-5">
         <div className="col-md-5 mt-5">
-      {success && <Success message="Account created successfully!" />}
+          {success && <Success message="Account created successfully!" />}
           <div className="bs" style={{ backgroundColor: "white" }}>
             <h2>Join RuntimeTerror Members</h2>
             <input

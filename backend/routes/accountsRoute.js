@@ -7,7 +7,7 @@ router.post("/join", async (req, res) => {
 
   try {
     const account = await newAccount.save();
-    res.send("Signin Created Successfully");
+    res.send("Account Created Successfully");
   } catch (error) {
     return res.status(400).json({ error });
   }
